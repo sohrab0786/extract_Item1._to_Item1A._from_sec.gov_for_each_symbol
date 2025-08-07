@@ -1,8 +1,34 @@
-﻿# extract_Item1._to_Item1A._from_sec.gov_for_each_symbol
-First do the setup for this put all required key, password essential details in .env file then
-1. git clone ..
-2. create virtual env
-3. python -m venv venv
-4. pip install -r requirements.txt
-5. first run filings_link_extraction.py code it will fetch all unqiue symbol with latest date, final link and it will redirect to the link download all the symbol htm, txt file in download folder symbol by symbol separately.
-6. Then run 2nd extract_content_htm_in_csv.py it will fetch files from download folder do the excraping and try to extract ITEM 1. BUSINESS to ITEM 1A. content into the final csv file. 
+# Extract ITEM 1. to ITEM 1A. from SEC.gov Filings
+
+This project automates the process of extracting the **"Item 1. Business"** section up to **"Item 1A. Risk Factors"** from 10-K filings downloaded from [SEC.gov](https://www.sec.gov/), for multiple symbols.
+
+---
+
+## 📦 Setup Instructions
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/extract-sec-item1.git
+   cd extract-sec-item1
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   
+🚀 Workflow
+Step 1: Download Latest Filings
+Run the following script to fetch the latest 10-K filings and download the corresponding .htm or .txt files for each company symbol:
+
+python filings_link_extraction.py
+This will create a downloads/ folder.
+
+Each symbol will have its own subfolder containing its latest filing.
+
+Step 2: Extract ITEM 1 to ITEM 1A Content
+Once the files are downloaded, extract the content using:
+
+python extract_content_htm_in_csv.py
+This script scans all downloaded files.
+
+It extracts content between "Item 1. Business" (or "Item 1. Description of Business") and "Item 1A. Risk Factors".
+
+Extracted content is saved to final_updated_with_item1.csv.
